@@ -1,7 +1,5 @@
 package Patterns_Intern;
 
-package Patterns_Intern;
-
 import java.util.*;
 
 public class WillysBooleanDemo {
