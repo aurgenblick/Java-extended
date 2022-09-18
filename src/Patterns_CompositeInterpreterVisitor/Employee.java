@@ -84,11 +84,13 @@ class Manager extends Employee {
 
     @Override
     public void accept(Visitor visitor, String indent) {
-        visitor.visit(this, indent);
-        /**??? In contrast to BoolDemo2 example, there's no need to pass the visit method to the child classes here**/
+        /**??? In contrast to BoolDemo2 example, there's no need to pass the visit method to the child classes here :
+         * prettyPrint method is implemented by Employee and its descendants .**/
 //        for (Employee e : subs) {
 //            e.accept(visitor, indent+indentation);
 //        }
+        visitor.visit(this, indent);
+
     }
 
     @Override

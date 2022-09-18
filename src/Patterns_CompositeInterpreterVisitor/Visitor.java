@@ -27,7 +27,20 @@ class Visitor {
 }
 
 class PrettyPrintVisitor extends Visitor {
-/*Visit operation here provides printing of the calling Employee's sub-hierarchy .*/
+/**Visit operation here provides printing of the calling Employee's sub-hierarchy .**/
+    //Had to implement prettyPrint in Employee class since 'subs' are private .
+//    public void prettyPrint(Employee e, String indent) {
+//        System.out.println(indent + e.getName() + " (" + e.getSalary() + ")" + e.getClass());
+//    }
+//
+//    public void prettyPrint(Manager em, String indent) {
+//        System.out.println(indent + em.getName() + " (" + em.getSalary() + ")" + em.getClass());
+//        for (Employee e : em.subs) {
+//            String subIndent = indent + em.indentatation;
+//            prettyPrint(e, subIndent);
+//        }
+//    }
+
     @Override
     public void visit(Employee e, String indent) {
         //System.out.println(indent + e.getName() + " (" + e.getSalary() + ") " + e.getClass());
