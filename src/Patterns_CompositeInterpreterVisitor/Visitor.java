@@ -1,11 +1,15 @@
-package Patterns_VisitorCompositor;
+package Patterns_CompositeInterpreterVisitor;
 
 class Visitor {
-    /*public static void main(String[] args) {
+    public void visit(Employee e, String indent) {
+    }
+
+
+    public static void main(String[] args) {
         final String initialIndent = "";
         Manager CEO = new Manager("Alice", 1, new Employee[]
-                { new Manager("Erin", 200000, new Employee[]
-                        { new Employee("Frank", 30000) }),
+                {new Manager("Erin", 200000, new Employee[]
+                        {new Employee("Frank", 30000)}),
                         new Employee("Bob", 40000),
                         new Manager("Dan", 100000, null),
                         new Employee("Carlos", 50000)
@@ -19,5 +23,14 @@ class Visitor {
         //    Dan (100000.0) Manager
         //    Carlos (50000.0) Employee
         CEO.accept(new PrettyPrintVisitor(), initialIndent);
-    }*/
+    }
+}
+
+class PrettyPrintVisitor extends Visitor {
+/*Visit operation here provides printing of the calling Employee's sub-hierarchy .*/
+    @Override
+    public void visit(Employee e, String indent) {
+        //System.out.println(indent + e.getName() + " (" + e.getSalary() + ") " + e.getClass());
+        e.prettyPrint(indent);
+    }
 }
