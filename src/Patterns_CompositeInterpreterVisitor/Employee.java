@@ -85,6 +85,10 @@ class Manager extends Employee {
     @Override
     public void accept(Visitor visitor, String indent) {
         visitor.visit(this, indent);
+        /**??? In contrast to BoolDemo2 example, there's no need to pass the visit method to the child classes here**/
+//        for (Employee e : subs) {
+//            e.accept(visitor, indent+indentation);
+//        }
     }
 
     @Override
@@ -94,6 +98,5 @@ class Manager extends Employee {
             String subIndent = indent + indentation;
             e.prettyPrint(subIndent);
         }
-
     }
 }
