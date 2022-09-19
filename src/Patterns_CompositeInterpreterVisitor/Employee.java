@@ -6,7 +6,6 @@ class Employee {
 
     private String name;
     private double salary;
-    protected final String indentation = "   ";
 
     public Employee(String n, double s) {
         name = n;
@@ -37,10 +36,14 @@ class Employee {
         visitor.visit(this, indent);
     }
 
-    public void prettyPrint(String indent) {
-        System.out.println(indent + this.getName() + " (" + this.getSalary() + ")" + this.getClass());
-    }
-
+    /**
+     * Important to note here that the main goal of implementing Visitor design pattern
+     * is to preserve the original classes and implement any new methods only by means of accept method .
+     * Therefore, it would be a mistake to put prettyPrint method in the Employee class tree .
+     **/
+//    public void prettyPrint(String indent) {
+//        System.out.println(indent + this.getName() + " (" + this.getSalary() + ")" + this.getClass());
+//    }
 }
 
 
@@ -48,6 +51,8 @@ class Manager extends Employee {
 
     private double bonus;
     private List<Employee> subs = new ArrayList<Employee>();
+    //
+    protected boolean emptySubs = this.subs.isEmpty();
 
     public Manager(String n, double s, Employee[] es) {
         super(n, s);
@@ -84,21 +89,9 @@ class Manager extends Employee {
 
     @Override
     public void accept(Visitor visitor, String indent) {
-        /**??? In contrast to BoolDemo2 example, there's no need to pass the visit method to the child classes here :
-         * prettyPrint method is implemented by Employee and its descendants .**/
-//        for (Employee e : subs) {
-//            e.accept(visitor, indent+indentation);
-//        }
         visitor.visit(this, indent);
-
-    }
-
-    @Override
-    public void prettyPrint(String indent) {
-        System.out.println(indent + this.getName() + " (" + this.getSalary() + ")" + this.getClass());
         for (Employee e : subs) {
-            String subIndent = indent + indentation;
-            e.prettyPrint(subIndent);
+            e.accept(visitor, indent);
         }
     }
 }
